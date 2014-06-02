@@ -3,6 +3,10 @@
 
 typedef unsigned char uchar;
 
+#ifdef __unix__
+        typedef long __int64;
+#endif
+
 #define Nb 4			// number of columns in the state & expanded key
 #define Nk 4			// number of columns in a key
 #define Nr 10			// number of rounds in encryption
