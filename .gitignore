@@ -3,4 +3,25 @@
 *.ko
 *.obj
 *.elf
+<<<<<<< HEAD
 *.out
+=======
+
+# Libraries
+*.lib
+*.a
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+>>>>>>> 4433422ef8fa1b2b76dd413f958a647c758f7ab0

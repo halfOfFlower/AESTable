@@ -213,11 +213,21 @@ int main(int argc, char *argv[]){
 		return 0;
 	}
 	switch(argv[1][0]){
-		case 'c': certify(); break;
-		case 'e': encrypt(argv[2], argv[3]); break;
-		case 'd': decrypt(argv[2], argv[3]); break;
-		case 'b': bernstein(argv[2]);	break;
-		case 't': tables(); break;
+		case 'c':
+			certify();
+			break;
+		case 'e':
+			encrypt(argv[2], argv[3]);
+			break;
+		case 'd':
+			decrypt(argv[2], argv[3]);
+			break;
+		case 'b':
+			bernstein(argv[2]);
+			break;
+		case 't':
+			tables();
+			break;
 	}
 
 	return 0;
