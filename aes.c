@@ -1,19 +1,10 @@
-/*
- * Dinux Copyright 2009
- *
- * Minimal AES implementation
- * Using static predefined tables
- *
- * Code cannot be used in a production libraries
- */
-
 #include <string.h>
 #include <memory.h>
 #include "aes.h"
 
 uchar Rcon[11] = {0x00, 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1b, 0x36};
 
-uchar Sbox[256] = {		// forward s-box
+uchar Sbox[256] = {
 	0x63, 0x7c, 0x77, 0x7b, 0xf2, 0x6b, 0x6f, 0xc5, 0x30, 0x01, 0x67, 0x2b, 0xfe, 0xd7, 0xab, 0x76,
 	0xca, 0x82, 0xc9, 0x7d, 0xfa, 0x59, 0x47, 0xf0, 0xad, 0xd4, 0xa2, 0xaf, 0x9c, 0xa4, 0x72, 0xc0,
 	0xb7, 0xfd, 0x93, 0x26, 0x36, 0x3f, 0xf7, 0xcc, 0x34, 0xa5, 0xe5, 0xf1, 0x71, 0xd8, 0x31, 0x15,
@@ -321,7 +312,7 @@ void ExpandKey(uchar *key, uchar *expkey){
 		tmp1 = expkey[4*idx - 3];
 		tmp2 = expkey[4*idx - 2];
 		tmp3 = expkey[4*idx - 1];
-		if(!(idx % Nk)){
+		if(!(idx%Nk)){
 			tmp4 = tmp3;
 			tmp3 = Sbox[tmp0];
 			tmp0 = Sbox[tmp1] ^ Rcon[idx/Nk];
@@ -351,16 +342,17 @@ void Encrypt(uchar *in, uchar *expkey, uchar *out){
 
 	AddRoundKey((unsigned *)state, (unsigned *)expkey);
 
-	for( round = 1; round < Nr + 1; round++ ) {
-		if( round < Nr )
-			MixSubColumns (state);
-		else
-			ShiftRows (state);
+	for(round=1; round<Nr+1; round++){
+		if(round < Nr){
+			MixSubColumns(state);
+		}else{
+			ShiftRows(state);
+		}
 
-		AddRoundKey ((unsigned *)state, (unsigned *)expkey + round * Nb);
+		AddRoundKey((unsigned *)state, (unsigned *)expkey + round * Nb);
 	}
 
-	for( idx = 0; idx < Nb; idx++ ) {
+	for(idx=0; idx<Nb; idx++){
 		*out++ = state[4*idx+0];
 		*out++ = state[4*idx+1];
 		*out++ = state[4*idx+2];
@@ -370,7 +362,7 @@ void Encrypt(uchar *in, uchar *expkey, uchar *out){
 
 void Decrypt(uchar *in, uchar *expkey, uchar *out){
 	unsigned idx, round, j;
-	uchar state[Nb * 4];
+	uchar state[Nb*4];
 
 	for(idx=0; idx<Nb; idx++){
 		state[4*idx+0] = *in++;

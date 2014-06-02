@@ -63,12 +63,12 @@ void certify(){
 }
 
 void decrypt(char *mykey, char *name){
-	uchar expkey[4 * Nb * (Nr + 1)];
-	FILE *fd = fopen (name, "rb");
+	uchar expkey[4*Nb*(Nr+1)];
+	FILE *fd = fopen(name, "rb");
 	int ch, idx = 0;
 
-	strncpy (key, mykey, sizeof(key));
-	ExpandKey (key, expkey);
+	strncpy(key, mykey, sizeof(key));
+	ExpandKey(key, expkey);
 
 	while(ch = getc(fd), ch != EOF){
 		in[idx++] = ch;
@@ -102,7 +102,7 @@ void encrypt(char *mykey, char *name){
 		Encrypt(in, expkey, out);
 
 		for(idx = 0; idx<16; idx++){
-			putchar (out[idx]);
+			putchar(out[idx]);
 		}
 		idx = 0;
 	}
@@ -144,7 +144,7 @@ void tables(){
 
 int main(int argc, char *argv[]){
 	if(argc<2){
-		printf("Need param\n");
+		printf("aescoder [cedbt]\n");
 		return 0;
 	}
 	switch(argv[1][0]){
