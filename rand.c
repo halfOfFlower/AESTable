@@ -11,12 +11,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <memory.h>
-#include "aestable.h"
 
 #define RAND_order (7 * sizeof(unsigned))
 #define RAND_size (96 * sizeof(unsigned))
 
-uchar RandTbl[RAND_size + RAND_order];
+unsigned char RandTbl[RAND_size + RAND_order];
 int RandHead = 0;
 
 /*

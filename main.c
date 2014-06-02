@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
-#include "aestable.h"
+#include "aes.h"
 
 extern int _setmode(int, int);
 extern uchar Sbox[256];
